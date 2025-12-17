@@ -1,39 +1,22 @@
 package oldsrc;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.util.Scanner;
-
 public class Dog extends Pet {
 	
 	public boolean goodDog = true;
 	
 	public Dog(String name) {
 		super(name);
-		askIfGoodDog(name);
-	}
-
-	public void askIfGoodDog(String name) {
-		Scanner in = new Scanner(System.in);
-		System.out.print("Is "+name+" a good dog? (yes/no): ");
-		goodDog = "yes".equals(in.next());
 	}
 
 	@Override
 	public void doSpecialAbility() {
-		try(PrintStream stream = new PrintStream(new FileOutputStream("petLog.txt", true))) {
-			stream.print(getName() + " says: ");
-			if (startsWithVowel(this.getName())) {
-				stream.println("Arf!");
-			} else {
-				stream.println("Bow wow!");
-			}
-			stream.println(goodDog ? "Good dog!" : "Bad dog!");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		System.out.print(getName() + " says: ");
+		if (startsWithVowel(this.getName())) {
+			System.out.println("Arf!");
+		} else {
+			System.out.println("Bow wow!");
 		}
-		
+		System.out.println(goodDog ? "Good dog!" : "Bad dog!");
 	}
 	
 	private boolean startsWithVowel(String s) {

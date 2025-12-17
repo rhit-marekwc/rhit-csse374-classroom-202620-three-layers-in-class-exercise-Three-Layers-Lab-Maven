@@ -1,0 +1,91 @@
+@startuml
+
+abstract class Pet {
+	- String name
+	- boolean isEating
+	+ Pet(String name)
+	+ void eatFood()
+	+ boolean isEating()
+	+ String getName()
+	+ {abstract} void doSpecialAbility()
+}
+
+class Cat {
+	+ Cat(String name)
+	+ void doSpecialAbility()
+}
+
+class Dog {
+	+ boolean goodDog
+	+ Dog(String name)
+	+ void doSpecialAbility()
+	- boolean startsWithVowel(String s)
+}
+
+class Fish {
+	- int numWiggles
+	+ Fish(String name, int numWiggles)
+	+ void doSpecialAbility()
+}
+
+class Zookeeper {
+	- String name
+	+ Zookeeper(String name)
+	+ void feedOnePet(Pet pet)
+	+ void feedPets(List<Pet> pets)
+}
+
+class PetMain {
+	- List<Pet> pets
+	- Zookeeper zookeeper
+	+ {static} void main(String[] args)
+	+ PetMain()
+	+ List<Pet> loadPets()
+	- List<Pet> loadPetsFromFile(Scanner in)
+	+ void feedPets()
+	+ void countPetsEating()
+	- void showPetSpecialAbilities()
+}
+
+package external {
+	class PetAuditRecord {
+		- String petName
+		- ActivityType activityType
+		- LocalDateTime timestamp
+		+ PetAuditRecord(String petName, ActivityType activityType)
+		+ String getPetName()
+		+ ActivityType getActivityType()
+		+ LocalDateTime getTimestamp()
+		+ String toParsableString()
+	}
+	
+	enum ActivityType {
+		FEED
+		EXERCISE
+	}
+	
+	class PetAuditSystem {
+		- String filename
+		+ PetAuditSystem(String filename)
+		+ void storeAudit(PetAuditRecord record)
+	}
+	
+	class ExternalPetAuditService {
+		- String username
+		- String password
+		+ ExternalPetAuditService(String username, String password)
+		+ void recordFeeding(int petId, LocalDateTime dateTime)
+	}
+}
+
+Cat --|> Pet
+Dog --|> Pet
+Fish --|> Pet
+
+PetMain --> Zookeeper
+PetMain --> Pet
+Zookeeper --> Pet
+PetAuditRecord +-- ActivityType
+PetAuditSystem --> PetAuditRecord
+
+@enduml

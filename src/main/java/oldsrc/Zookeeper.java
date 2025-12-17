@@ -1,6 +1,5 @@
 package oldsrc;
 
-import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,11 +11,7 @@ public class Zookeeper {
 	}
 	
 	public void feedOnePet(Pet pet) {
-		try(PrintStream stream = new PrintStream(new FileOutputStream("petLog.txt", true))) {
-			stream.printf("%s is feeding %s. "+System.lineSeparator(), this.name, pet.getName());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		System.out.printf("%s is feeding %s. "+System.lineSeparator(), this.name, pet.getName());
 		pet.eatFood();
 	}
 

@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
 
+import external.ExternalPetAuditService;
+import external.PetAuditRecord;
+import external.PetAuditSystem;
+
 /**
  * This program features a zookeeper feeding her pets.
- * 
- * TODO: Move the code FILES into the presentation/domain/datasource layers they most closely belong to.
- * TODO: Move code down to the appropriate layer.
- * TODO: Fix layering violations by pulling code up to the appropriate layer. 
  * 
  * @author Jason Yoder, Matt Boutell, Mark Hays, and their colleagues.
  *
@@ -82,6 +82,5 @@ public class PetMain {
 		for (Pet pet : this.pets) {
 			pet.doSpecialAbility();
 		}
-		System.err.println("Pet special abilities written to petLog.txt.");
 	}
 }
