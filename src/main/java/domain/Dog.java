@@ -1,4 +1,4 @@
-package oldsrc;
+package domain;
 
 public class Dog extends Pet {
 	

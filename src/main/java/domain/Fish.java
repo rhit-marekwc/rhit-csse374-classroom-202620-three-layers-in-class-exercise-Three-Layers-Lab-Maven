@@ -1,4 +1,4 @@
-package oldsrc;
+package domain;
 
 public class Fish extends Pet {
 	private int numWiggles;

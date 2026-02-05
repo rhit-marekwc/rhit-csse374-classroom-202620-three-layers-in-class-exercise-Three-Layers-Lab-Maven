@@ -1,13 +1,17 @@
-package oldsrc;
-
+package domain;
+import data.*;
+import data.PetAuditRecord.ActivityType;
 
 public abstract class Pet {
+	private int id;
 	private String name;
 	private boolean isEating;
+	private PetAuditSystem pas;
 
 	public Pet(String name) {
 		this.name = name;
 		this.isEating = false;
+		this.pas = new PetAuditSystem();
 	}
 	
 	public void eatFood() {
@@ -23,5 +27,13 @@ public abstract class Pet {
 		return this.name;
 	}
 
-	public abstract void doSpecialAbility();
+
+
+	protected abstract void doSpecialAbility();
+
+	public void exercise(){
+		doSpecialAbility();
+	}
+
+
 }
